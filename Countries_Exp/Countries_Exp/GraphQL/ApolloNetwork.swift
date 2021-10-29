@@ -12,7 +12,7 @@ import Apollo
 class NetworkCall {
     // SHAK: Properties
     static let shared: NetworkCall = NetworkCall()
-    lazy var apollo = ApolloClient(url: URL(string: "http://countries.trevorblades.com")!)
+    lazy var apollo = ApolloClient(url: URL(string: "https://countries.trevorblades.com")!)
     
     private init() {}
     
