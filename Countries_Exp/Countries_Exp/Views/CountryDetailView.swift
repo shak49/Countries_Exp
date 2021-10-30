@@ -13,9 +13,15 @@ struct CountryDetailView: View {
     
     var body: some View {
         VStack {
-            Text(countryInfo?.emoji ?? "")
-            Text(countryInfo?.name ?? "")
-            Text(countryInfo?.capital ?? "")
+            HStack {
+                Text(countryInfo?.emoji ?? "")
+                    .scaleEffect(3)
+                    .padding(15)
+                VStack() {
+                    Text(countryInfo?.name ?? "")
+                    Text(countryInfo?.capital ?? "")
+                }
+            }
             List(countryInfo?.states ?? [], id: \.name) { state in
                 Text(state.name)
             }
