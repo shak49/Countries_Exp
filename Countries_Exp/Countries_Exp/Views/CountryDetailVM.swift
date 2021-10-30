@@ -12,7 +12,7 @@ import Foundation
 //    // SHAK: Properties
 //    @Published var country: GetAllCountriesQuery.Data.Country!
 //    @Published var countryInfo: GetCountryInfoQuery.Data.Country?
-//    
+//
 //    // SHAK: Functions
 //    func fetchDetail() {
 //        NetworkCall.shared.apollo.fetch(query: GetCountryInfoQuery(code: country.code)) { result in
