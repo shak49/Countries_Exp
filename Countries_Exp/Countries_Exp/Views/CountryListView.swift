@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ContentView: View {
+struct CountryListView: View {
     @State private var countries: [GetAllCountriesQuery.Data.Country] = []
     
     var body: some View {
         NavigationView {
             VStack {
                 List(countries, id: \.code) { country in
-                    NavigationLink(destination: Text("Destination"), label: {
+                    NavigationLink(destination: CountryDetailView(country: country), label: {
                         HStack {
                             Text(country.emoji)
                             Text(country.name)
@@ -44,6 +44,6 @@ struct ContentView: View {
 
 struct ContentView_Previews: PreviewProvider {
     static var previews: some View {
-        ContentView()
+        CountryListView()
     }
 }
