@@ -7,13 +7,14 @@
 
 import SwiftUI
 
+
 struct CountryListView: View {
-    @State private var countries: [GetAllCountriesQuery.Data.Country] = []
+    @StateObject private var countryListVM: CountryListVM = CountryListVM()
     
     var body: some View {
         NavigationView {
             VStack {
-                List(countries, id: \.code) { country in
+                List(countryListVM.countries, id: \.code) { country in
                     NavigationLink(destination: CountryDetailView(country: country), label: {
                         HStack {
                             Text(country.emoji)
@@ -24,18 +25,7 @@ struct CountryListView: View {
                 .listStyle(PlainListStyle())
             }
             .onAppear(perform: {
-                NetworkCall.shared.apollo.fetch(query: GetAllCountriesQuery()) { result in
-                    switch result {
-                    case .success(let graphQLResult):
-                        if let countries = graphQLResult.data?.countries {
-                            DispatchQueue.main.async {
-                                self.countries = countries
-                            }
-                        }
-                    case .failure(let error):
-                        print(error)
-                    }
-                }
+                countryListVM.fetchInfo()
             })
             .navigationTitle("Countries")
         }
